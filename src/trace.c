@@ -7,8 +7,7 @@ main(int argc, char **argv)
 {
 
 printf(2, "trace.c ran\n");
-trace(0);
-/*
+
 	if(argc != 2)
 	{
 		printf(1, "Incorrect Arg Count\n");
@@ -21,14 +20,15 @@ trace(0);
 	//turn tracing off
 	if(arg == 0)
 	{
-		trace(*test);
+		printf(1, "off\n");
+		trace();
 	}
 	else
 	{
-		int ppid = getppid();
-		trace(ppid);
+		printf(1, "on\n");
+		trace();
 	}
-*/
+
 /*
 	printf(2, "\nargcount %d\n", argc);
 	printf(2, "arg1: %s\n", argv[0]);

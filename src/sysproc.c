@@ -110,6 +110,18 @@ int
 sys_trace(void)
 {
   cprintf("\nsys trace\n");
+
+  bool flag = proc->parent->traceFlag;
+
+  if( flag == true )
+  {
+    cprintf("we should trace\n");
+  }
+  else
+  {
+    cprintf("we shouldn't trace\n");
+  }
+
 /*
   cprintf("arg: %d", pid);
 
@@ -134,6 +146,7 @@ sys_trace(void)
   return 0;
 
 */
-  return trace(proc->traceFlag);
+ // return trace(proc->traceFlag);
+  return 0;
 }
 

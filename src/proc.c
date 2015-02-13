@@ -73,6 +73,8 @@ found:
   memset(p->context, 0, sizeof *p->context);
   p->context->eip = (uint)forkret;
 
+  p->traceFlag = false;
+
   return p;
 }
 
@@ -413,9 +415,9 @@ wakeup(void *chan)
 int
 trace(int pid)
 {
-  cprintf("\npid: %d", pid);
-//  printf("\ntest to see if generic model was implemented");
-
+  cprintf("\npid: %d\n", pid);
+  cprintf("\npid: %d", proc->pid);
+  cprintf("\nppid: %d\n", proc->parent->pid);
 
   return 0;
 }
