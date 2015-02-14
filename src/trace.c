@@ -1,6 +1,9 @@
 #include "types.h"
 #include "stat.h"
 #include "user.h"
+#include "btree.h"
+
+
 
 int
 main(int argc, char **argv)
@@ -16,6 +19,7 @@ printf(2, "trace.c ran\n");
 	int *test = malloc(sizeof(int));
 	*test = 0;
 	int arg = atoi(argv[1]);
+
 
 	//turn tracing off
 	if(arg == 0)
