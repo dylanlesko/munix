@@ -40,9 +40,3 @@ printf(2, "trace.c ran\n");
 
   exit();
 }
-
-int
-addTracer(int pid)
-{
-	return 0;
-}

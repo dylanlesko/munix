@@ -118,7 +118,12 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
-int 			trace(int id);
+int 		    trace(int id);
+int 			ps(void);
+
+//trace.c
+int 			insertTrace();
+
 
 // swtch.S
 void            swtch(struct context**, struct context*);

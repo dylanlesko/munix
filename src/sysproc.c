@@ -122,6 +122,7 @@ sys_trace(void)
     cprintf("we shouldn't trace\n");
   }
 
+//sleep();
 /*
   cprintf("arg: %d", pid);
 
@@ -146,7 +147,17 @@ sys_trace(void)
   return 0;
 
 */
- // return trace(proc->traceFlag);
+  //trace();
+ //return trace(proc->traceFlag);
+  trace( proc->parent->pid );
   return 0;
 }
 
+int
+sys_ps(void)
+{
+  cprintf("list all\n");
+  ps();
+
+  return 0;
+}

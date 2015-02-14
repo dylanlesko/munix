@@ -100,6 +100,7 @@ extern int sys_write(void);
 extern int sys_uptime(void);
 extern int sys_trace(void);
 extern int sys_getppid(void);
+extern int sys_ps(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -125,6 +126,7 @@ static int (*syscalls[])(void) = {
 [SYS_close]   sys_close,
 [SYS_trace]   sys_trace,
 [SYS_getppid]  sys_getppid,
+[SYS_ps]      sys_ps,
 };
 
 void
@@ -141,7 +143,7 @@ syscall(void)
   {
     if(proc->traceFlag == true)
     {
-      cprintf("\nnum: %d]n", num);
+      insertTrace();
     }
     proc->tf->eax = syscalls[num]();
   } else {

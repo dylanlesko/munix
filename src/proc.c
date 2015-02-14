@@ -415,11 +415,57 @@ wakeup(void *chan)
 int
 trace(int pid)
 {
-  cprintf("\npid: %d\n", pid);
-  cprintf("\npid: %d", proc->pid);
-  cprintf("\nppid: %d\n", proc->parent->pid);
+    struct proc *p;
+      acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+  {
+    if( pid == p->pid )
+    {
+      p->traceFlag = true;
+      break;
+    }
+    else
+    {
+      continue;
+    }
+  }
+  release(&ptable.lock);
+
 
   return 0;
+}
+
+int
+insertTrace()
+{
+  cprintf("insert\n");
+  return 0;
+}
+
+int
+ps(void)
+{
+  struct proc *p;
+  //int usedMem;
+  //int freeMem;
+
+  acquire(&ptable.lock);
+  cprintf("PID\tName\t\tSize\tState\tParent\n");
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+  {
+    if( p->state != 0 )
+    {
+      cprintf("%d\t", p->pid);
+      cprintf("%s\t\t", p->name);
+      cprintf("%d\t", p->sz);
+      cprintf("%d\t", p->state);
+      cprintf("%d\t\n", p->parent->pid);
+    }
+  }
+  cprintf("\n");
+  release(&ptable.lock);
+
+    return 0;
 }
 
 
@@ -483,3 +529,4 @@ procdump(void)
     cprintf("\n");
   }
 }
+
