@@ -9,10 +9,3 @@ typedef int bool;
 
 #define NULL (void*)0
 
-typedef struct tree
-{
-	int val_id;
-	int freq;
-	struct tree *left;
-	struct tree *right;
-}tree;
