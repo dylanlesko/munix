@@ -415,8 +415,8 @@ wakeup(void *chan)
 int
 trace(int pid)
 {
-    struct proc *p;
-      acquire(&ptable.lock);
+  struct proc *p;
+  acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
   {
     if( pid == p->pid )

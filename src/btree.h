@@ -1,7 +1,7 @@
 #ifndef BTREE_H
 #define BTREE_H
 
-
+#define NULL (void*)0
 
 typedef struct tree
 {
