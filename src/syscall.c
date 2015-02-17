@@ -143,8 +143,9 @@ syscall(void)
   {
     if(proc->traceFlag == true)
     {
-      cprintf("process %d invoked syscall %d", proc->pid, num);
-      insertTrace();
+      proc->totalSysCall = proc->totalSysCall + 1;
+      cprintf("\npid %d invoked call %d\n", proc->pid, num);
+     // insertTrace();
     }
     proc->tf->eax = syscalls[num]();
   } else {

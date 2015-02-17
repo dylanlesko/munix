@@ -15,8 +15,7 @@ printf(2, "trace.c ran\n");
 		printf(1, "Incorrect Arg Count\n");
 		exit();
 	}
-	int *test = malloc(sizeof(int));
-	*test = 0;
+
 	int arg = atoi(argv[1]);
 
 
@@ -24,12 +23,12 @@ printf(2, "trace.c ran\n");
 	if(arg == 0)
 	{
 		printf(1, "off\n");
-		trace();
+		trace(0);
 	}
 	else
 	{
 		printf(1, "on\n");
-		trace();
+		trace(1);
 	}
 
 /*

@@ -107,49 +107,21 @@ sys_uptime(void)
 
 
 int
-sys_trace(void)
+sys_trace(int id)
 {
-  cprintf("\nsys trace\n");
+  cprintf("sys call from pid: %d", proc->parent->pid);
 
-  bool flag = proc->parent->traceFlag;
+  cprintf("count: %d\n", proc->parent->totalSysCall);
 
-  if( flag == true )
+  if(id != 0)
   {
-    cprintf("we should trace\n");
+    proc->parent->traceFlag = true;
   }
   else
   {
-    cprintf("we shouldn't trace\n");
-  }
-
-//sleep();
-/*
-  cprintf("arg: %d", pid);
-
-  if(pid == 0)
-  {
-    cprintf("Process %s no longer tracing\n", proc->parent->name);
     proc->parent->traceFlag = false;
-    return 0;
-  }
-  else
-  {
-    cprintf("Process %s currently tracing\n", proc->parent->name);
-      proc->parent->traceFlag = true;
   }
 
-
-
-  if(argint(0, &pid) < 0)
-  {
-    return -1;
-  }
-  return 0;
-
-*/
-  //trace();
- //return trace(proc->traceFlag);
-  trace( proc->parent->pid );
   return 0;
 }
 
