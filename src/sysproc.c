@@ -115,44 +115,19 @@ sys_trace(void)
   
   if(argint(0, &n) < 0)
     return -1;
-  //cprintf("arg: %d\n", n);
 
   if(n != 0)
   {
+    //cprintf("pid %d has made %d system calls\n", proc->pid, proc->totalSysCall);
     proc->traceFlag = true;
-    cprintf("calls: %d", proc->totalSysCall);
-    /*
-    if(proc->traceFlag == true)
-    {
-      cprintf("Process %d has invoked syscall(%d)\n", proc->pid, 22);
-      proc->totalSysCall = proc->totalSysCall + 1;
-      cprintf("system call count: %d\n", proc->totalSysCall);
-    }
-    else
-    {
-      //proc->totalSysCall = 0;
-      cprintf("system call count: %d\n", proc->totalSysCall);
-      proc->traceFlag = true;
-    }*/
   }
   else
   {
+    //cprintf("pid %d has made %d system calls\n", proc->pid, proc->totalSysCall);
     proc->traceFlag = false;
-    cprintf("calls: %d", proc->totalSysCall);
-    /*
-    if(proc->traceFlag == true)
-    {
-      proc->traceFlag = false;
-      cprintf("Turning Trace Off. \nsystem call count: %d\n", proc->totalSysCall);
-    }
-    else
-    {
-      cprintf("Trace Already Off. %d calls made during last trace execution\n", proc->totalSysCall );
-    }*/
-
   }
 
-  return 0;
+  return proc->totalSysCall;
 }
 
 int

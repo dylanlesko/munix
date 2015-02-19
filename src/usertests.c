@@ -22,10 +22,11 @@ tracetest(void)
   trace(1);
   wait();
   trace(1);
+  printf(stdout, "Hello World");
   wait();
   trace(0);
   wait();
-  trace(0);
+  printf(stdout, "count: %d\n", trace(0));
 }
 
 // does chdir() call iput(p->cwd) in a transaction?
@@ -1721,13 +1722,15 @@ rand()
 int
 main(int argc, char *argv[])
 {
-  printf(1, "usertests starting\n");
-
+  //printf(1, "usertests starting\n");
+/*
   if(open("usertests.ran", 0) >= 0){
     printf(1, "already ran user tests -- rebuild fs.img\n");
     exit();
   }
   close(open("usertests.ran", O_CREATE));
+*/
+
 /*
   createdelete();
   linkunlink();
