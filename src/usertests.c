@@ -18,7 +18,10 @@ int stdout = 1;
 void
 tracetest(void)
 {
-  //trace(1);
+  trace(1);
+  wait();
+  trace(0);
+  wait();
 }
 
 // does chdir() call iput(p->cwd) in a transaction?
@@ -1721,7 +1724,7 @@ main(int argc, char *argv[])
     exit();
   }
   close(open("usertests.ran", O_CREATE));
-
+/*
   createdelete();
   linkunlink();
   concreate();
@@ -1760,6 +1763,11 @@ main(int argc, char *argv[])
   forktest();
   bigdir(); // slow
   exectest();
+*/
+
+
+printf(1, "pid: %d\n", getpid());
+tracetest();
 
   exit();
 }

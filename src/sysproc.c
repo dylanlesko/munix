@@ -109,17 +109,17 @@ sys_uptime(void)
 int
 sys_trace(int id)
 {
-  cprintf("sys call from pid: %d", proc->parent->pid);
+  cprintf("sys call from pid: %d", proc->pid);
 
-  cprintf("count: %d\n", proc->parent->totalSysCall);
+  cprintf("count: %d\n", proc->totalSysCall);
 
   if(id != 0)
   {
-    proc->parent->traceFlag = true;
+    proc->traceFlag = true;
   }
   else
   {
-    proc->parent->traceFlag = false;
+    proc->traceFlag = false;
   }
 
   return 0;
