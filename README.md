@@ -6,14 +6,14 @@ Version 6 (v6). Based on MIT's xv6, we are planning on adding a few interesting 
 
 
 # To Do
-	- Ensure system call trace does not track itself
-	- check count
-	- clean output
+	- --check count--
+	- --clean output--
 	- finish test program
+	- add trace documentation
 	- test and submit
-	
+
 # Errors
-	- Turning trace off
+	- --Turning trace off--
 
 # System Calls
 	- trace(int)
