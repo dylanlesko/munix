@@ -129,23 +129,52 @@ static int (*syscalls[])(void) = {
 [SYS_ps]      sys_ps,
 };
 
+static char *sysCallNames[25] = {
+	"",
+	"fork",
+	"exit",
+	"wait",
+	"pipe",
+	"read",
+	"kill",
+	"exec",
+	"fstat",
+	"chdir",
+	"dup",
+	"getpid",
+	"sbrk",
+	"sleep",
+	"uptime",
+	"open",
+	"write",
+	"mknod",
+	"unlink",
+	"link",
+	"mkdir",
+	"close",
+	"trace",
+	"getppid",
+	"ps"};
+
+
+
+
 void
 syscall(void)
 {
   int num;
 
   num = proc->tf->eax;
-  if(num == 22)
-  {
-    //cprintf("\ntrace is called");
-  }
+//  cprintf("\nnum is: %d. syscalls[num] is: %d\n",num,syscalls[num]);
+
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) 
   {
     if(proc->traceFlag == true)
     {
       proc->totalSysCall = proc->totalSysCall + 1;
-      cprintf("\npid %d invoked call %d\n", proc->pid, num);
+      //cprintf("\npid %d invoked call %d\n", proc->pid, num);
      // insertTrace();
+	cprintf("pid: %d [%s] syscall(%d=%s)\n",proc->pid,proc->name,num,sysCallNames[num]);
     }
     proc->tf->eax = syscalls[num]();
   } else {
