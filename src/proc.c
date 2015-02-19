@@ -74,6 +74,7 @@ found:
   p->context->eip = (uint)forkret;
 
   p->traceFlag = false;
+  p->totalSysCall = 0;
 
   return p;
 }
@@ -409,39 +410,6 @@ wakeup(void *chan)
   release(&ptable.lock);
 }
 
-// trace
-
-
-int
-trace(int pid)
-{
-  struct proc *p;
-  acquire(&ptable.lock);
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
-  {
-    if( pid == p->pid )
-    {
-      p->traceFlag = true;
-      break;
-    }
-    else
-    {
-      continue;
-    }
-  }
-  release(&ptable.lock);
-
-
-  return 0;
-}
-
-int
-insertTrace()
-{
-  cprintf("insert\n");
-  return 0;
-}
-
 int
 ps(void)
 {
@@ -460,6 +428,7 @@ ps(void)
       cprintf("%d\t", p->sz);
       cprintf("%d\t", p->state);
       cprintf("%d\t\n", p->parent->pid);
+      //cprintf("%d\n", p->totalSysCall);
     }
   }
   cprintf("\n");
@@ -493,40 +462,20 @@ kill(int pid)
   return -1;
 }
 
-//PAGEBREAK: 36
-// Print a process listing to console.  For debugging.
-// Runs when user types ^P on console.
-// No lock to avoid wedging a stuck machine further.
-void
-procdump(void)
+int
+trace(int pid)
 {
-  static char *states[] = {
-  [UNUSED]    "unused",
-  [EMBRYO]    "embryo",
-  [SLEEPING]  "sleep ",
-  [RUNNABLE]  "runble",
-  [RUNNING]   "run   ",
-  [ZOMBIE]    "zombie"
-  };
-  int i;
   struct proc *p;
-  char *state;
-  uint pc[10];
-  
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if(p->state == UNUSED)
-      continue;
-    if(p->state >= 0 && p->state < NELEM(states) && states[p->state])
-      state = states[p->state];
-    else
-      state = "???";
-    cprintf("%d %s %s", p->pid, state, p->name);
-    if(p->state == SLEEPING){
-      getcallerpcs((uint*)p->context->ebp+2, pc);
-      for(i=0; i<10 && pc[i] != 0; i++)
-        cprintf(" %p", pc[i]);
-    }
-    cprintf("\n");
-  }
-}
 
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->pid == pid){
+      p->totalSysCall = p->totalSysCall + 1;
+//      cprintf("debuf %d\n", p->totalSysCall);
+      release(&ptable.lock);
+      return 0;
+    }
+  }
+  release(&ptable.lock);
+  return -1;
+}

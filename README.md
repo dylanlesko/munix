@@ -11,6 +11,9 @@ Version 6 (v6). Based on MIT's xv6, we are planning on adding a few interesting 
 	- clean output
 	- finish test program
 	- test and submit
+	
+# Errors
+	- Turning trace off
 
 # System Calls
 	- trace(int)

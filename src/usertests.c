@@ -18,10 +18,14 @@ int stdout = 1;
 void
 tracetest(void)
 {
+  wait();
+  trace(1);
+  wait();
   trace(1);
   wait();
   trace(0);
   wait();
+  trace(0);
 }
 
 // does chdir() call iput(p->cwd) in a transaction?
@@ -1766,7 +1770,6 @@ main(int argc, char *argv[])
 */
 
 
-printf(1, "pid: %d\n", getpid());
 tracetest();
 
   exit();

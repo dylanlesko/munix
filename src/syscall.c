@@ -135,19 +135,21 @@ syscall(void)
   int num;
 
   num = proc->tf->eax;
-  if(num == 22)
-  {
-    //cprintf("\ntrace is called");
-  }
+
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) 
   {
-    if(proc->traceFlag == true)
+    if( proc->traceFlag == true && num != 22 )
     {
-      proc->totalSysCall = proc->totalSysCall + 1;
-      cprintf("\npid %d invoked call %d\n", proc->pid, num);
-     // insertTrace();
+      cprintf("Process %d has invoked syscall(%d)\n", proc->pid, num);
     }
+    if( num != 22 )
+    {
+      //proc->totalSysCall = proc->totalSysCall + 1;
+    }
+    trace(proc->pid);
+
     proc->tf->eax = syscalls[num]();
+
   } else {
     cprintf("%d %s: unknown sys call %d\n",
             proc->pid, proc->name, num);

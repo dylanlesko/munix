@@ -7,6 +7,7 @@
 #include "mmu.h"
 #include "proc.h"
 
+
 int
 sys_fork(void)
 {
@@ -107,19 +108,48 @@ sys_uptime(void)
 
 
 int
-sys_trace(int id)
+sys_trace(void)
 {
-  cprintf("sys call from pid: %d", proc->pid);
 
-  cprintf("count: %d\n", proc->totalSysCall);
+  int n;
+  
+  if(argint(0, &n) < 0)
+    return -1;
+  //cprintf("arg: %d\n", n);
 
-  if(id != 0)
+  if(n != 0)
   {
     proc->traceFlag = true;
+    cprintf("calls: %d", proc->totalSysCall);
+    /*
+    if(proc->traceFlag == true)
+    {
+      cprintf("Process %d has invoked syscall(%d)\n", proc->pid, 22);
+      proc->totalSysCall = proc->totalSysCall + 1;
+      cprintf("system call count: %d\n", proc->totalSysCall);
+    }
+    else
+    {
+      //proc->totalSysCall = 0;
+      cprintf("system call count: %d\n", proc->totalSysCall);
+      proc->traceFlag = true;
+    }*/
   }
   else
   {
     proc->traceFlag = false;
+    cprintf("calls: %d", proc->totalSysCall);
+    /*
+    if(proc->traceFlag == true)
+    {
+      proc->traceFlag = false;
+      cprintf("Turning Trace Off. \nsystem call count: %d\n", proc->totalSysCall);
+    }
+    else
+    {
+      cprintf("Trace Already Off. %d calls made during last trace execution\n", proc->totalSysCall );
+    }*/
+
   }
 
   return 0;

@@ -193,7 +193,7 @@ consoleintr(int (*getc)(void))
   while((c = getc()) >= 0){
     switch(c){
     case C('P'):  // Process listing.
-      procdump();
+      ps();
       break;
     case C('U'):  // Kill line.
       while(input.e != input.w &&
