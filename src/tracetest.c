@@ -41,5 +41,12 @@ int main(int argc, char *argv[]){
 	trace(1);
 	printf(1, "for the third test %d", trace(0));
 
+
+	trace(1);
+	trace(1);
+	trace(1);
+	trace(1);
+	int traced = trace(0);
+	printf(1, "traced is %d", traced);
 	exit();
 }
