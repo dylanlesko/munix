@@ -75,6 +75,7 @@ found:
 
   p->traceFlag = false;
   p->totalSysCall = 0;
+  p->totalContextSwitches = 0;
 
   return p;
 }
@@ -289,6 +290,8 @@ scheduler(void)
       proc = p;
       switchuvm(p);
       p->state = RUNNING;
+      // Increments the number of times that the process had a context switch
+      p->totalContextSwitches += 1;
       swtch(&cpu->scheduler, proc->context);
       switchkvm();
 

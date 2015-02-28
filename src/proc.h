@@ -68,6 +68,7 @@ struct proc {
   char name[16];               // Process name (debugging)
   bool traceFlag;               // Flag to taggle syscall output on/off
   int totalSysCall;            // track total syscall made by proc
+  int totalContextSwitches;     // track the total number of context switches
 };
 
 // Process memory is laid out contiguously, low addresses first:

@@ -6,6 +6,7 @@ int
 main(int argc, char **argv)
 {
 	int pid = atoi(argv[1]);
+	printf(1,"The pid is %d\n",pid);
 
 	if(argc != 2)
 	{

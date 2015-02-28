@@ -101,6 +101,7 @@ extern int sys_uptime(void);
 extern int sys_trace(void);
 extern int sys_getppid(void);
 extern int sys_ps(void);
+extern int sys_csinfo(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -127,10 +128,11 @@ static int (*syscalls[])(void) = {
 [SYS_trace]   sys_trace,
 [SYS_getppid]  sys_getppid,
 [SYS_ps]      sys_ps,
+[SYS_csinfo]  sys_csinfo,
 };
 
 
-static char *sysCallNames[25] = {
+static char *sysCallNames[26] = {
 "",
 "fork",
 "exit",
@@ -155,7 +157,8 @@ static char *sysCallNames[25] = {
 "close",
 "trace",
 "getppid",
-"ps"};
+"ps",
+"csinfo"};
 
 
 void

@@ -19,6 +19,9 @@ void
 tracetest(void)
 {
   wait();
+  wait();
+  wait();
+  wait();
   trace(1);
   wait();
   trace(1);
@@ -26,7 +29,13 @@ tracetest(void)
   wait();
   trace(0);
   wait();
-  printf(stdout, "count: %d\n", trace(0));
+  wait();
+  wait();
+  wait();
+ 
+  printf(stdout, "count from trace(0): %d\n", trace(0));
+  int a = trace(1);
+  printf(1,"%d\n",a);
 }
 
 // does chdir() call iput(p->cwd) in a transaction?

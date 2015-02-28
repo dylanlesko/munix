@@ -26,6 +26,7 @@ int uptime(void);
 int trace(int id);
 int getppid(void);
 int ps(void);
+int csinfo(void);
 
 // ulib.c
 int stat(char*, struct stat*);

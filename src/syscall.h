@@ -23,3 +23,4 @@
 #define SYS_trace  	22
 #define SYS_getppid 	23
 #define SYS_ps 	  	24
+#define SYS_csinfo	25

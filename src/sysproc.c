@@ -138,3 +138,9 @@ sys_ps(void)
 
   return 0;
 }
+
+int
+sys_csinfo(void)
+{
+	return proc->totalContextSwitches;
+}
